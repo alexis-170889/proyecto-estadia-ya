@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EstadiaYa - Reservá fácil, pagá en pesos, alojate seguro</title>
+    <meta name="description" content="Portal oficial de EstadiaYa. Descarga nuestra app para alquileres temporales seguros y fáciles.">
+    
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FF6F4A'/><path d='M50 25 L75 50 L50 75 L25 50 Z' fill='white'/></svg>">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <span class="logo-text">EstadiaYa</span>
+                </div>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#beneficios">Beneficios</a></li>
+                    <li><a href="#noticias">Noticias</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="dashboard.html" class="btn btn-secondary">Mi Cuenta</a></li>
+                    <li><a href="#descargar" class="btn btn-primary">Descargar App</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="highlight">Tu alojamiento temporal</span>
+                        <span class="highlight">más fácil y seguro</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Encontrá el lugar perfecto, reservá en minutos y pagá en pesos argentinos. 
+                        Una experiencia sin complicaciones para tu próxima estadía.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">10,000+</span>
+                            <span class="stat-label">alojamientos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4.8★</span>
+                            <span class="stat-label">calificación</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">soporte</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta">
+                        <a href="#descargar" class="btn btn-primary btn-large btn-download">
+                            <i class="fas fa-download"></i> Descargar ahora
+                        </a>
+                        <div class="cta-secondary">
+                            <a href="#newsletter" class="btn btn-outline">
+                                <i class="fas fa-bell"></i> Notificarme al lanzar
+                            </a>
+                            <p class="cta-note">Disponible para iOS y Android</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="app-showcase">
+                        <div class="phone-mockup floating">
+                            <div class="phone-screen">
+                                <div class="app-screen search-screen">
+                                    <div class="app-header">
+                                        <span class="app-logo">EY</span>
+                                        <span class="app-title">Buscar</span>
+                                    </div>
+                                    <div class="search-box">
+                                        <i class="fas fa-search"></i>
+                                        <input type="text" placeholder="¿Dónde querés ir?" disabled>
+                                    </div>
+                                    <div class="filters">
+                                        <span class="filter active">Todos</span>
+                                        <span class="filter">Casas</span>
+                                        <span class="filter">Departamentos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="phone-mockup floating delay-1">
+                            <div class="phone-screen">
+                                <div class="app-screen property-screen">
+                                    <div class="property-image">
+                                        <span class="property-badge">Top Rated</span>
+                                    </div>
+                                    <div class="property-details">
+                                        <h4>Loft en Palermo</h4>
+                                        <p class="property-location">
+                                            <i class="fas fa-map-marker-alt"></i> Palermo, Buenos Aires
+                                        </p>
+                                        <div class="property-rating">
+                                            <i class="fas fa-star"></i> 4.8 · 120 reseñas
+                                        </div>
+                                        <div class="property-price">
+                                            <span class="price">$25000</span>
+                                            <span class="period">/noche</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Destacados -->
+    <section class="features" id="beneficios">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir EstadiaYa?</h2>
+            <p class="section-subtitle">Diseñado pensando en tu comodidad y seguridad</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon bg-mandarina">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Pago 100% seguro</h3>
+                    <p>Todas las transacciones protegidas con encriptación bancaria. Pagá en pesos sin preocupaciones.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon bg-lavanda">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Reserva instantánea</h3>
+                    <p>Confirmación inmediata en la mayoría de propiedades. Sin esperas, sin trámites burocráticos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon bg-menta">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Verificación completa</h3>
+                    <p>Anfitriones y propiedades verificados. Documentación en regla para tu tranquilidad.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon" style="background-color: #3A3A3A;">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Soporte dedicado</h3>
+                    <p>Asistencia personalizada antes, durante y después de tu estadía. Estamos para ayudarte.</p>
+                </div>
+            </div>
+            
+            <div class="features-cta">
+                <a href="#descargar" class="btn btn-primary btn-large">
+                    <i class="fas fa-rocket"></i> Comenzar a reservar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Captura de Leads -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <div class="newsletter-card">
+                <div class="newsletter-content">
+                    <h2>¿Todavía no lanzamos?</h2>
+                    <p>¡Sé de los primeros en probar EstadiaYa! Dejanos tu email y te avisaremos el día del lanzamiento.</p>
+                    
+                    <form class="newsletter-form" id="leadForm">
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="tuemail@ejemplo.com" required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Notificarme
+                            </button>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">Acepto recibir novedades y ofertas de EstadiaYa</label>
+                        </div>
+                        <p class="form-note">Respetamos tu privacidad. Nunca compartiremos tu email.</p>
+                    </form>
+                    
+                    <div class="newsletter-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="leadCount">1,247</span>
+                            <span class="stat-label">personas esperando</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="daysLeft">15</span>
+                            <span class="stat-label">días para el lanzamiento</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Noticias/Blog -->
+    <section class="news" id="noticias">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Últimas noticias</h2>
+                <a href="blog.html" class="btn btn-outline">Ver todas</a>
+            </div>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image" style="background-color: #FF6F4A;"></div>
+                    <div class="news-content">
+                        <span class="news-category">Actualización</span>
+                        <h3 class="news-title">Nueva funcionalidad: Pago en cuotas</h3>
+                        <p class="news-excerpt">Ahora podés financiar tu estadía en hasta 12 cuotas sin interés con tarjetas seleccionadas.</p>
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 15 Mar 2024</span>
+                            <a href="#" class="news-link">Leer más →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image" style="background-color: #A78DED;"></div>
+                    <div class="news-content">
+                        <span class="news-category">Consejos</span>
+                        <h3 class="news-title">Cómo encontrar alojamientos pet-friendly</h3>
+                        <p class="news-excerpt">Guía completa para viajar con tu mascota y encontrar los mejores lugares que las acepten.</p>
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 10 Mar 2024</span>
+                            <a href="#" class="news-link">Leer más →</a>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="news-card">
+                    <div class="news-image" style="background-color: #52D1A6;"></div>
+                    <div class="news-content">
+                        <span class="news-category">Expansión</span>
+                        <h3 class="news-title">Llegamos a 5 nuevas ciudades</h3>
+                        <p class="news-excerpt">EstadiaYa ahora está disponible en Córdoba, Mendoza, Rosario, Bariloche y Puerto Iguazú.</p>
+                        <div class="news-meta">
+                            <span class="news-date"><i class="far fa-calendar"></i> 5 Mar 2024</span>
+                            <a href="#" class="news-link">Leer más →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Descarga App -->
+    <section class="download" id="descargar">
+        <div class="container">
+            <div class="download-content">
+                <div class="download-text">
+                    <h2 class="section-title">¡Descargá la app gratis!</h2>
+                    <p class="section-subtitle">Disponible para iOS y Android. Reservá desde cualquier lugar.</p>
+                    
+                    <div class="app-features">
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Registro en 2 minutos</span>
+                        </div>
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Búsqueda con filtros avanzados</span>
+                        </div>
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Reservas instantáneas</span>
+                        </div>
+                        <div class="app-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Chat con anfitriones</span>
+                        </div>
+                    </div>
+                    
+                    <div class="download-badges">
+                        <a href="#" class="store-badge" id="appStoreBtn">
+                            <div class="badge-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="badge-text">
+                                <span>Descargar en</span>
+                                <span class="store-name">App Store</span>
+                            </div>
+                        </a>
+                        
+                        <a href="#" class="store-badge" id="playStoreBtn">
+                            <div class="badge-icon">
+                                <i class="fab fa-google-play"></i>
+                            </div>
+                            <div class="badge-text">
+                                <span>Disponible en</span>
+                                <span class="store-name">Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="qr-section">
+                        <div class="qr-code">
+                            <div class="qr-image">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://estadiaya.com/app" alt="QR para descargar app">
+                            </div>
+                            <p>Escaneá con tu celular</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-image">
+                    <div class="devices-showcase">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Persona usando app de alquileres" class="device-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto y Soporte -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">¿Tenés preguntas?</h2>
+            <p class="section-subtitle">Estamos aquí para ayudarte</p>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Soporte</h3>
+                        <p>Nuestro equipo está disponible 24/7 para resolver tus dudas.</p>
+                        <a href="mailto:soporte@estadiaya.com" class="contact-link">
+                            <i class="fas fa-envelope"></i> soporte@estadiaya.com
+                        </a>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <h3>Chat en vivo</h3>
+                        <p>Conversá con nosotros en tiempo real desde la app o web.</p>
+                        <button class="btn btn-outline" id="openChat">
+                            <i class="fas fa-comment"></i> Abrir chat
+                        </button>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>FAQ</h3>
+                        <p>Encontrá respuestas rápidas a las preguntas más frecuentes.</p>
+                        <a href="faq.html" class="contact-link">
+                            <i class="fas fa-question-circle"></i> Ver preguntas frecuentes
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <h3>Envianos un mensaje</h3>
+                        
+                        <div class="form-group">
+                            <label for="contactName">Nombre completo</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail">Email</label>
+                            <input type="email" id="contactEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject">Asunto</label>
+                            <select id="contactSubject" required>
+                                <option value="">Seleccioná un tema</option>
+                                <option value="soporte">Soporte técnico</option>
+                                <option value="pagos">Problemas con pagos</option>
+                                <option value="reserva">Consultas sobre reservas</option>
+                                <option value="anfitrion">Quiero ser anfitrión</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage">Mensaje</label>
+                            <textarea id="contactMessage" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar mensaje
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="logo-text">EstadiaYa</span>
+                    </div>
+                    <p class="footer-tagline">Reservá fácil, pagá en pesos, alojate seguro.</p>
+                    
+                    <div class="footer-download">
+                        <p>Descargá la app:</p>
+                        <div class="footer-badges">
+                            <a href="#" class="store-badge small">
+                                <i class="fab fa-apple"></i>
+                                <span>App Store</span>
+                            </a>
+                            <a href="#" class="store-badge small">
+                                <i class="fab fa-google-play"></i>
+                                <span>Google Play</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Producto</h4>
+                        <ul>
+                            <li><a href="#inicio">Cómo funciona</a></li>
+                            <li><a href="#beneficios">Beneficios</a></li>
+                            <li><a href="#descargar">Descargar app</a></li>
+                            <li><a href="precios.html">Precios</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Recursos</h4>
+                        <ul>
+                            <li><a href="#noticias">Blog</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="centro-ayuda.html">Centro de ayuda</a></li>
+                            <li><a href="seguridad.html">Seguridad</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="terminos.html">Términos y condiciones</a></li>
+                            <li><a href="privacidad.html">Política de privacidad</a></li>
+                            <li><a href="cookies.html">Cookies</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Contacto</h4>
+                        <ul>
+                            <li><a href="mailto:hola@estadiaya.com"><i class="fas fa-envelope"></i> hola@estadiaya.com</a></li>
+                            <li><a href="tel:+5491112345678"><i class="fas fa-phone"></i> +54 9 11 1234-5678</a></li>
+                            <li><a href="#"><i class="fas fa-map-marker-alt"></i> Buenos Aires, Argentina</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                
+                <p>&copy; 2026 EstadiaYa. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <button class="chat-toggle" id="chatToggle">
+            <i class="fas fa-comment-dots"></i>
+            <span class="chat-badge">3</span>
+        </button>
+        
+        <div class="chat-container">
+            <div class="chat-header">
+                <h4>Soporte EstadiaYa</h4>
+                <button class="chat-close">&times;</button>
+            </div>
+            <div class="chat-body">
+                <div class="chat-message bot">
+                    <p>¡Hola! ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Escribe tu mensaje...">
+                <button class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
