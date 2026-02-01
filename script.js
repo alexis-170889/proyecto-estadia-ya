@@ -1,84 +1,46 @@
-// ===== SCRIPT COMPLETO PARA ESTADIAYA =====
+// ===== SCRIPT SIMPLIFICADO PARA ESTADIAYA =====
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // ===== MENÚ MÓVIL =====
-    const menuToggle = document.getElementById('menuToggle');
-    const navMenu = document.getElementById('navMenu');
-    
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            
-            // Cambiar ícono del menú
-            const icon = menuToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.querySelector('i').classList.remove('fa-times');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-            });
-        });
-    }
-    
-    // ===== FORMULARIO DE CAPTURA DE LEADS =====
+    // ===== FORMULARIO DE NEWSLETTER =====
     const leadForm = document.getElementById('leadForm');
     if (leadForm) {
         leadForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const email = document.getElementById('email').value;
-            const terms = document.getElementById('terms').checked;
+            const emailInput = this.querySelector('input[type="email"]');
+            const termsCheckbox = document.getElementById('terms');
             
-            if (!email || !terms) {
-                alert('Por favor completa todos los campos y acepta los términos.');
+            if (!emailInput.value || !termsCheckbox.checked) {
+                showAlert('Por favor completa todos los campos y acepta los términos.', 'warning');
                 return;
             }
             
-            // Simular envío a servidor
+            // Actualizar contador
             const leadCount = document.getElementById('leadCount');
             const currentCount = parseInt(leadCount.textContent.replace(',', ''));
             leadCount.textContent = (currentCount + 1).toLocaleString();
             
-            // Mostrar confirmación
-            mostrarNotificacion('¡Gracias! Te avisaremos cuando lancemos la app.', 'success');
+            // Mostrar éxito
+            showAlert('¡Gracias! Te avisaremos cuando lancemos la app.', 'success');
             
             // Resetear formulario
             leadForm.reset();
             
-            // Enviar datos a servidor (simulado)
-            console.log('Lead capturado:', email);
-            
-            // Aquí iría el código real para enviar a tu backend
-            // fetch('/api/leads', {
-            //     method: 'POST',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify({email: email})
-            // });
+            // Simular envío
+            console.log('Lead capturado:', emailInput.value);
         });
     }
     
     // ===== BOTONES DE DESCARGA =====
-    const appStoreBtn = document.getElementById('appStoreBtn');
-    const playStoreBtn = document.getElementById('playStoreBtn');
-    
-    [appStoreBtn, playStoreBtn].forEach(btn => {
+    const downloadButtons = ['appStoreBtn', 'playStoreBtn'];
+    downloadButtons.forEach(id => {
+        const btn = document.getElementById(id);
         if (btn) {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
-                const store = btn.querySelector('.store-name').textContent;
-                mostrarModalDescarga(store);
+                const store = this.querySelector('.fw-bold').textContent;
+                showDownloadModal(store);
             });
         }
     });
@@ -89,129 +51,125 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = document.getElementById('contactName').value;
-            const email = document.getElementById('contactEmail').value;
-            const subject = document.getElementById('contactSubject').value;
-            const message = document.getElementById('contactMessage').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
             
             if (!name || !email || !subject || !message) {
-                mostrarNotificacion('Por favor completa todos los campos.', 'error');
+                showAlert('Por favor completa todos los campos.', 'warning');
                 return;
             }
             
-            // Simular envío
-            mostrarNotificacion('¡Mensaje enviado! Te responderemos pronto.', 'success');
+            // Mostrar éxito
+            showAlert('¡Mensaje enviado! Te responderemos pronto.', 'success');
             contactForm.reset();
             
-            // Aquí iría el código real para enviar el formulario
+            // Simular envío
             console.log('Mensaje de contacto:', {name, email, subject, message});
         });
     }
     
-    // ===== CHAT WIDGET =====
-    const chatToggle = document.getElementById('chatToggle');
-    const chatContainer = document.querySelector('.chat-container');
-    const chatClose = document.querySelector('.chat-close');
-    const openChatBtn = document.getElementById('openChat');
-    
-    if (chatToggle && chatContainer) {
-        chatToggle.addEventListener('click', function() {
-            chatContainer.classList.toggle('active');
-        });
-        
-        if (chatClose) {
-            chatClose.addEventListener('click', function() {
-                chatContainer.classList.remove('active');
-            });
-        }
-        
-        // Cerrar chat al hacer clic fuera
-        document.addEventListener('click', function(e) {
-            if (!chatToggle.contains(e.target) && !chatContainer.contains(e.target)) {
-                chatContainer.classList.remove('active');
-            }
-        });
-        
-        // Botón "Abrir chat" en la sección de contacto
-        if (openChatBtn) {
-            openChatBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                chatContainer.classList.add('active');
-            });
-        }
-        
-        // Funcionalidad del chat
-        const chatInput = chatContainer?.querySelector('.chat-input input');
-        const chatSend = chatContainer?.querySelector('.chat-input .btn');
-        const chatBody = chatContainer?.querySelector('.chat-body');
-        
-        if (chatSend && chatInput && chatBody) {
-            chatSend.addEventListener('click', enviarMensajeChat);
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    enviarMensajeChat();
-                }
-            });
-            
-            function enviarMensajeChat() {
-                const message = chatInput.value.trim();
-                if (!message) return;
-                
-                // Agregar mensaje del usuario
-                const userMessage = document.createElement('div');
-                userMessage.className = 'chat-message';
-                userMessage.style.cssText = `
-                    background: linear-gradient(135deg, var(--mandarina), var(--lavanda));
-                    color: white;
-                    align-self: flex-end;
-                    margin-left: auto;
-                `;
-                userMessage.innerHTML = `<p>${message}</p>`;
-                chatBody.appendChild(userMessage);
-                
-                // Limpiar input
-                chatInput.value = '';
-                
-                // Scroll al final
-                chatBody.scrollTop = chatBody.scrollHeight;
-                
-                // Respuesta automática después de 1 segundo
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.className = 'chat-message bot';
-                    botMessage.innerHTML = `<p>Gracias por tu mensaje. Un miembro de nuestro equipo te responderá pronto. ¿Hay algo más en lo que pueda ayudarte?</p>`;
-                    chatBody.appendChild(botMessage);
-                    chatBody.scrollTop = chatBody.scrollHeight;
-                }, 1000);
-            }
-        }
-    }
-    
-    // ===== CONTADOR PARA DÍAS HASTA LANZAMIENTO =====
-    function actualizarContadorLanzamiento() {
+    // ===== CONTADOR DE DÍAS HASTA LANZAMIENTO =====
+    function updateLaunchCounter() {
         const daysLeftElement = document.getElementById('daysLeft');
         if (!daysLeftElement) return;
         
         // Fecha objetivo de lanzamiento (15 días desde hoy)
-        const fechaLanzamiento = new Date();
-        fechaLanzamiento.setDate(fechaLanzamiento.getDate() + 15);
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 15);
         
         // Calcular días restantes
-        const hoy = new Date();
-        const diffTime = fechaLanzamiento - hoy;
+        const today = new Date();
+        const diffTime = launchDate - today;
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         daysLeftElement.textContent = diffDays > 0 ? diffDays : 0;
     }
     
-    actualizarContadorLanzamiento();
+    updateLaunchCounter();
+    
+    // ===== ACTUALIZAR AÑO EN FOOTER =====
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+    
+    // ===== FUNCIONES DE UTILIDAD =====
+    function showDownloadModal(store) {
+        // Usar modal de Bootstrap
+        const modalHTML = `
+            <div class="modal fade" id="downloadModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header border-0">
+                            <h5 class="modal-title fw-bold">¡Gracias por tu interés!</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center py-4">
+                            <div class="icon-wrapper bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3 mx-auto" style="width: 70px; height: 70px;">
+                                <i class="bi bi-phone fs-3"></i>
+                            </div>
+                            <h5 class="fw-bold mb-3">EstadiaYa en ${store}</h5>
+                            <p class="text-muted mb-4">
+                                La app estará disponible pronto. Mientras tanto, podés registrarte para ser de los primeros en probarla.
+                            </p>
+                        </div>
+                        <div class="modal-footer border-0 justify-content-center">
+                            <a href="#newsletter" class="btn btn-primary px-4" data-bs-dismiss="modal">
+                                <i class="bi bi-bell me-2"></i>Notificarme al lanzar
+                            </a>
+                            <button type="button" class="btn btn-outline-primary px-4" data-bs-dismiss="modal">
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Crear e insertar modal
+        const modalContainer = document.createElement('div');
+        modalContainer.innerHTML = modalHTML;
+        document.body.appendChild(modalContainer);
+        
+        // Mostrar modal
+        const modal = new bootstrap.Modal(document.getElementById('downloadModal'));
+        modal.show();
+        
+        // Remover modal después de cerrar
+        document.getElementById('downloadModal').addEventListener('hidden.bs.modal', function() {
+            document.body.removeChild(modalContainer);
+        });
+    }
+    
+    function showAlert(message, type = 'info') {
+        // Crear alerta de Bootstrap
+        const alertHTML = `
+            <div class="alert alert-${type} alert-dismissible fade show position-fixed top-0 end-0 m-3" 
+                 style="z-index: 9999; min-width: 300px;" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        `;
+        
+        const alertContainer = document.createElement('div');
+        alertContainer.innerHTML = alertHTML;
+        document.body.appendChild(alertContainer);
+        
+        // Auto-remover después de 5 segundos
+        setTimeout(() => {
+            const bsAlert = new bootstrap.Alert(alertContainer.querySelector('.alert'));
+            bsAlert.close();
+        }, 5000);
+    }
     
     // ===== ANIMACIONES AL SCROLL =====
-    function observarElementos() {
+    function initScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
+                    entry.target.classList.add('fade-in');
                 }
             });
         }, {
@@ -220,188 +178,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Observar elementos para animar
-        document.querySelectorAll('.feature-card, .news-card, .contact-card').forEach(el => {
+        document.querySelectorAll('.card, .display-5, .lead').forEach(el => {
             observer.observe(el);
         });
     }
     
-    observarElementos();
+    initScrollAnimations();
     
-    // ===== FUNCIONES DE UTILIDAD =====
-    function mostrarModalDescarga(store) {
-        const modal = document.createElement('div');
-        modal.className = 'modal-overlay';
-        modal.innerHTML = `
-            <div class="modal">
-                <div class="modal-header">
-                    <h3>¡Gracias por tu interés!</h3>
-                    <button class="modal-close">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <p>La app de <strong>EstadiaYa</strong> estará disponible pronto en ${store}.</p>
-                    <p>Mientras tanto, podés registrarte para ser de los primeros en probarla.</p>
-                    
-                    <div class="modal-actions">
-                        <a href="#newsletter" class="btn btn-primary">
-                            <i class="fas fa-bell"></i> Notificarme al lanzar
-                        </a>
-                        <button class="btn btn-outline modal-close-btn">
-                            Cerrar
-                        </button>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Estilos del modal
-        modal.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            animation: fadeIn 0.3s ease;
-        `;
-        
-        const modalElement = modal.querySelector('.modal');
-        modalElement.style.cssText = `
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            max-width: 400px;
-            width: 90%;
-            animation: slideUp 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        `;
-        
-        // Estilos para animaciones
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from { opacity: 0; }
-                to { opacity: 1; }
-            }
-            @keyframes slideUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        document.body.appendChild(modal);
-        
-        // Funcionalidad de cierre
-        const closeButtons = modal.querySelectorAll('.modal-close, .modal-close-btn');
-        closeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.body.removeChild(modal);
-            });
-        });
-        
-        // Cerrar al hacer clic fuera
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                document.body.removeChild(modal);
-            }
-        });
-    }
-    
-    function mostrarNotificacion(mensaje, tipo = 'info') {
-        // Crear notificación
-        const notificacion = document.createElement('div');
-        notificacion.className = `notificacion ${tipo}`;
-        notificacion.textContent = mensaje;
-        
-        // Estilos de la notificación
-        notificacion.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            color: white;
-            font-weight: 500;
-            z-index: 2000;
-            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        `;
-        
-        if (tipo === 'success') {
-            notificacion.style.background = 'linear-gradient(135deg, #52D1A6, #46c095)';
-        } else if (tipo === 'error') {
-            notificacion.style.background = 'linear-gradient(135deg, #FF6F4A, #ff5a30)';
-        } else {
-            notificacion.style.background = 'linear-gradient(135deg, #A78DED, #9675e0)';
-        }
-        
-        // Animaciones
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes slideInRight {
-                from {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateX(0);
-                }
-            }
-            @keyframes fadeOut {
-                to {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        document.body.appendChild(notificacion);
-        
-        // Remover después de 3.5 segundos
-        setTimeout(() => {
-            if (document.body.contains(notificacion)) {
-                document.body.removeChild(notificacion);
-            }
-        }, 3500);
-    }
-    
-    // ===== SCROLL SUAVE PARA ANCLAS =====
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href === '#') return;
-            
-            const targetElement = document.querySelector(href);
-            if (targetElement) {
-                e.preventDefault();
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+    // ===== MEJORAR EXPERIENCIA DE FORMULARIOS =====
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Enviando...';
+                submitBtn.disabled = true;
+                
+                // Restaurar después de 2 segundos (simulación)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
             }
         });
     });
-    
-    // ===== ACTUALIZAR AÑO EN FOOTER =====
-    const yearSpan = document.querySelector('footer .footer-bottom p');
-    if (yearSpan) {
-        const currentYear = new Date().getFullYear();
-        yearSpan.innerHTML = yearSpan.innerHTML.replace('2024', currentYear);
-    }
 });
